@@ -86,7 +86,7 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  :root {background-color: #f8d7ff !important;
+  :root {background-color: #f8f2fa !important;
     scroll-behavior: smooth;
   }
 }
@@ -10824,3 +10824,14 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+
+
+.navbar {
+  background-color: #FFB6C1 !important; /* صورتی روشن */
+}
+
+header.bg-dark {
+  background-color: #FF69B4 !important; /* صورتی روشن */
+}
+

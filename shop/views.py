@@ -40,21 +40,23 @@ def logout_user(request):
 
 
 def signup_user(request):
-  form = signupform()
-  if request.method == "POST":
-    form = signupform(request.POST)
-    if form.is_valid:
-      form.save()
-      username = form.cleaned_data['username']
-      password1 = form.cleaned_data['password1']
-      user = authenticate(request , username=username ,password=password1)
-      login(request , user)
-      messages.success(request, ("اکانت شما با موفقیت ساخته شد"))
-      return redirect('home')
-    else:
-      messages.success(request, ("مشکلی در ثبت نام شما وجود دارد"))
-      return redirect('home')
-      return render(request , 'signup.html' , {"form" : form})
+    form = signupform()
+    if request.method == "POST":
+        form = signupform(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password1 = form.cleaned_data['password1']
+            user = authenticate(request, username=username, password=password1)
+            if user is not None:
+                login(request, user)
+                messages.success(request, "اکانت شما با موفقیت ساخته شد")
+                return redirect('home')
+        else:
+            messages.error(request, "مشکلی در ثبت نام شما وجود دارد")
+    # این بخش برای هندل کردن درخواست‌های GET و فرم نامعتبر در POST
+    return render(request, 'signup.html', {"form": form})
+
 
 
 def product(request , pk):
