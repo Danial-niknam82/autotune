@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from .models import Product, Category, Advertisement  # Advertisement رو اضافه کن
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Product, Category, Advertisement
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -60,6 +60,10 @@ def signup_user(request):
 def product(request, pk):
     product = Product.objects.get(id=pk)
     return render(request, 'product.html', {'product': product})
+
+def advertisement_detail(request, pk):
+    advertisement = get_object_or_404(Advertisement, id=pk)
+    return render(request, 'advertisement_detail.html', {'advertisement': advertisement})
 
 def category(request, cat):
     cat = cat.replace('-', ' ')

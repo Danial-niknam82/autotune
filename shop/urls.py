@@ -1,13 +1,17 @@
 from django.urls import path
-from . import views
+from .views import (
+    helloworld, about, login_user, logout_user, signup_user,
+    product, category, add_advertisement, advertisement_detail
+)
 
 urlpatterns = [
-    path('', views.helloworld, name='home'),
-    path('about/', views.about, name='about'),
-    path('login/', views.login_user, name='login'),
-    path('logout/', views.logout_user, name='logout'),
-    path('signup/', views.signup_user, name='signup'),
-    path('product/<int:pk>/', views.product, name='product'),
-    path('category/<str:cat>/', views.category, name='category'),
-    path('add-advertisement/', views.add_advertisement, name='add_advertisement'),  # این خط رو اضافه کن
+    path('', helloworld, name='home'),
+    path('about/', about, name='about'),
+    path('login/', login_user, name='login'),
+    path('logout/', logout_user, name='logout'),
+    path('signup/', signup_user, name='signup'),
+    path('product/<int:pk>/', product, name='product'),
+    path('category/<str:cat>/', category, name='category'),
+    path('add_advertisement/', add_advertisement, name='add_advertisement'),
+    path('advertisement/<int:pk>/', advertisement_detail, name='advertisement_detail'),
 ]

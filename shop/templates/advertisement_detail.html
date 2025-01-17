@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <img src="{{ advertisement.image.url }}" class="card-img-top" alt="{{ advertisement.title }}">
+        <div class="card-body">
+            <h5 class="card-title">{{ advertisement.title }}</h5>
+            <p class="card-text">{{ advertisement.description }}</p>
+            <p class="card-text"><small class="text-muted">شماره تماس: {{ advertisement.phone }}</small></p>
+            <p class="card-text"><small class="text-muted">ثبت‌شده توسط: {{ advertisement.user.username }}</small></p>
+            <p class="card-text"><small class="text-muted">تاریخ ثبت: {{ advertisement.created_at }}</small></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

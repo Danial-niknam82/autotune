@@ -80,6 +80,12 @@
                                     <p class="card-text"><small class="text-muted">شماره تماس: {{ advertisement.phone }}</small></p>
                                 </div>
                             </div>
+                            <!-- Advertisement actions -->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <a class="btn btn-outline-dark mt-auto" href="{% url 'advertisement_detail' advertisement.id %}">اطلاعات بیشتر</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
