@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-4 mb-4">اضافه کردن آگهی جدید</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.title.label_tag }}
+            {{ form.title }}
+            {% if form.title.errors %}
+                <div class="alert alert-danger mt-2">
+                    {{ form.title.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.description.label_tag }}
+            {{ form.description }}
+            {% if form.description.errors %}
+                <div class="alert alert-danger mt-2">
+                    {{ form.description.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.image.label_tag }}
+            {{ form.image }}
+            {% if form.image.errors %}
+                <div class="alert alert-danger mt-2">
+                    {{ form.image.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.phone.label_tag }}
+            {{ form.phone }}
+            {% if form.phone.errors %}
+                <div class="alert alert-danger mt-2">
+                    {{ form.phone.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">ثبت آگهی</button>
+    </form>
+</div>
+{% endblock %}
