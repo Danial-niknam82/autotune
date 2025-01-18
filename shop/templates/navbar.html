@@ -1,36 +1,60 @@
-<!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="{% url "home" %}">اتو مارکت</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url "home" %}">خانه</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "about" %}">درباره ما</a></li>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container px-4 px-lg-5">
+        <!-- لوگو و نام سایت -->
+        <a class="navbar-brand" href="{% url 'home' %}">اتو مارکت</a>
+        
+        <!-- دکمه برای نمایش منو در دستگاه‌های کوچک -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                        {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link" href="{% url "logout" %}">خارج شدن</a></li>
-                        {% else %}
-                        <li class="nav-item"><a class="nav-link" href={% url "login" %}>وارد شدن</a></li>
-                        <li class="nav-item"><a class="nav-link" href={% url "signup" %}>ثبت نام</a></li>
-                        {% endif %}
+        <!-- منو -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <!-- لینک خانه -->
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">خانه</a>
+                </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="{% url "home" %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">ماشین ها</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{% url "home" %}">تمام ماشین ها</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="{% url 'category' 'خارجی' %}"> خارجی ها</a></li>
-                                <li><a class="dropdown-item" href="{% url 'category' 'ایرانی' %}">ایرانی ها </a></li>
-                            </ul>
-                        </li>
+                <!-- لینک درباره ما -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}">درباره ما</a>
+                </li>
+
+                <!-- لینک‌های کاربری -->
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">خارج شدن</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">وارد شدن</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}">ثبت نام</a>
+                    </li>
+                {% endif %}
+
+                <!-- منوی کشویی ماشین‌ها -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">ماشین‌ها</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'home' %}">تمام ماشین‌ها</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'خارجی' %}">خارجی‌ها</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'ایرانی' %}">ایرانی‌ها</a></li>
                     </ul>
-                    <form class="d-flex" action="{% url 'add_advertisement' %}" method="get">
-                        <button class="btn btn-outline-dark" type="submit">
-                            <i class="bi-plus-circle me-1"></i>
-                            ثبت آگهی
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </nav>
+                </li>
+            </ul>
+
+            <!-- دکمه ثبت آگهی -->
+            <form class="d-flex" action="{% url 'add_advertisement' %}" method="get">
+                <button class="btn btn-outline-dark" type="submit">
+                    <i class="bi-plus-circle me-1"></i>
+                    ثبت آگهی
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>
