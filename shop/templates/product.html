@@ -7,6 +7,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <style>
         @font-face {
             font-family: 'Vazir';
@@ -15,17 +16,17 @@
 
         body {
             font-family: 'Vazir', system-ui, -apple-system, sans-serif;
-            background-color: #f8f9fa;
+            background: linear-gradient(145deg, #f8f9fa, #ffffff);
             color: #333;
             line-height: 1.6;
-            padding-top: 60px; /* برای فاصله دادن محتوا از نوار بالایی */
+            padding-top: 80px; /* برای فاصله دادن محتوا از نوار بالایی */
         }
 
         /* استایل‌های سفارشی برای navbar */
         .navbar-custom {
-            background-color: #FF69B4; /* رنگ زمینه صورتی */
-            height: 60px; /* ارتفاع کمتر */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* سایه کوچک */
+            background: linear-gradient(135deg, #FF69B4, #FF1493);
+            height: 80px; /* ارتفاع بیشتر */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* سایه کوچک */
         }
 
         .navbar-custom .navbar-brand,
@@ -34,7 +35,7 @@
         }
 
         .navbar-custom .nav-link:hover {
-            color: #FF1493 !important; /* تغییر رنگ هنگام هاور */
+            color: #FFC0CB !important; /* تغییر رنگ هنگام هاور */
         }
 
         .navbar-custom .navbar-toggler {
@@ -54,9 +55,15 @@
         .product-card {
             background: white;
             border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             overflow: hidden;
             margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
         }
 
         .product-grid {
@@ -79,7 +86,7 @@
         }
 
         .product-image:hover {
-            transform: scale(1.02);
+            transform: scale(1.05);
         }
 
         .product-details {
@@ -87,9 +94,10 @@
         }
 
         .product-title {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
             color: #2c3e50;
+            font-weight: bold;
         }
 
         .product-description {
@@ -99,18 +107,19 @@
         }
 
         .price-tag {
-            background: #e74c3c;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
             color: white;
-            padding: 0.5rem 1rem;
+            padding: 0.8rem 1.5rem;
             border-radius: 25px;
             display: inline-block;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             font-size: 1.2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .sale-price {
             color: #e74c3c;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: bold;
         }
 
@@ -131,9 +140,15 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.5rem;
+            padding: 0.8rem;
             background: #f8f9fa;
             border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .feature-icon {
@@ -143,24 +158,26 @@
 
         .contact-info {
             margin-top: 2rem;
-            padding-top: 1rem;
+            padding-top: 1.5rem;
             border-top: 1px solid #eee;
         }
 
         .contact-button {
-            background: #2ecc71;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
             color: white;
-            padding: 0.8rem 1.5rem;
+            padding: 1rem 2rem;
             border-radius: 25px;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            transition: background 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .contact-button:hover {
-            background: #27ae60;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
         }
 
         @media (max-width: 768px) {
@@ -242,7 +259,7 @@
 
     <!-- محتوای صفحه -->
     <div class="container">
-        <div class="product-card">
+        <div class="product-card animate__animated animate__fadeInUp">
             <div class="product-grid">
                 <div class="product-image-container">
                     <img src="{{ product.picture.url }}" class="product-image" alt="{{ product.name }}">

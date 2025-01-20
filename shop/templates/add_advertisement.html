@@ -1,47 +1,116 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-    <h2 class="mt-4 mb-4">اضافه کردن آگهی جدید</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="form-group">
-            {{ form.title.label_tag }}
-            {{ form.title }}
-            {% if form.title.errors %}
-                <div class="alert alert-danger mt-2">
-                    {{ form.title.errors }}
+<!-- اضافه کردن padding-top به container برای جلوگیری از تداخل با نوبار -->
+<div class="container" style="padding-top: 80px;">
+    <h2 class="mt-4 mb-4 text-center fw-bold" style="color: #ff6f61;">اضافه کردن آگهی جدید</h2>
+    <div class="card shadow-lg p-4 bg-light rounded-3">
+        <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="form-group mb-4">
+                <label for="{{ form.title.id_for_label }}" class="form-label fw-bold">{{ form.title.label }}</label>
+                <div class="input-group">
+                    <span class="input-group-text" style="background-color: #ff6f61; color: white;"><i class="fas fa-heading"></i></span>
+                    {{ form.title }}
                 </div>
-            {% endif %}
-        </div>
-        <div class="form-group">
-            {{ form.description.label_tag }}
-            {{ form.description }}
-            {% if form.description.errors %}
-                <div class="alert alert-danger mt-2">
-                    {{ form.description.errors }}
+                {% if form.title.errors %}
+                    <div class="invalid-feedback d-block">
+                        {{ form.title.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="form-group mb-4">
+                <label for="{{ form.description.id_for_label }}" class="form-label fw-bold">{{ form.description.label }}</label>
+                <div class="input-group">
+                    <span class="input-group-text" style="background-color: #ff6f61; color: white;"><i class="fas fa-align-left"></i></span>
+                    {{ form.description }}
                 </div>
-            {% endif %}
-        </div>
-        <div class="form-group">
-            {{ form.image.label_tag }}
-            {{ form.image }}
-            {% if form.image.errors %}
-                <div class="alert alert-danger mt-2">
-                    {{ form.image.errors }}
+                {% if form.description.errors %}
+                    <div class="invalid-feedback d-block">
+                        {{ form.description.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="form-group mb-4">
+                <label for="{{ form.image.id_for_label }}" class="form-label fw-bold">{{ form.image.label }}</label>
+                <div class="input-group">
+                    <span class="input-group-text" style="background-color: #ff6f61; color: white;"><i class="fas fa-image"></i></span>
+                    {{ form.image }}
                 </div>
-            {% endif %}
-        </div>
-        <div class="form-group">
-            {{ form.phone.label_tag }}
-            {{ form.phone }}
-            {% if form.phone.errors %}
-                <div class="alert alert-danger mt-2">
-                    {{ form.phone.errors }}
+                {% if form.image.errors %}
+                    <div class="invalid-feedback d-block">
+                        {{ form.image.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="form-group mb-4">
+                <label for="{{ form.phone.id_for_label }}" class="form-label fw-bold">{{ form.phone.label }}</label>
+                <div class="input-group">
+                    <span class="input-group-text" style="background-color: #ff6f61; color: white;"><i class="fas fa-phone"></i></span>
+                    {{ form.phone }}
                 </div>
-            {% endif %}
-        </div>
-        <button type="submit" class="btn btn-primary">ثبت آگهی</button>
-    </form>
+                {% if form.phone.errors %}
+                    <div class="invalid-feedback d-block">
+                        {{ form.phone.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-pink-gradient btn-block py-3 fw-bold">
+                <i class="fas fa-paper-plane me-2"></i>ثبت آگهی
+            </button>
+        </form>
+    </div>
 </div>
+
+<style>
+    /* استایل‌های سفارشی برای فرم */
+    .form-control {
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        border: 1px solid #ced4da;
+        transition: all 0.3s ease;
+    }
+    .form-control:focus {
+        border-color: #ff6f61;
+        box-shadow: 0 0 0 0.2rem rgba(255, 111, 97, 0.25);
+        transform: scale(1.02);
+    }
+    /* گرادیان برای دکمه (صورتی) */
+    .btn-pink-gradient {
+        background: linear-gradient(45deg, #ff6f61, #ff9a9e);
+        border: none;
+        color: white;
+        transition: all 0.3s ease;
+    }
+    .btn-pink-gradient:hover {
+        background: linear-gradient(45deg, #ff9a9e, #ff6f61);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(255, 111, 97, 0.3);
+    }
+    /* کارت با سایه و انیمیشن */
+    .card {
+        border: none;
+        background: linear-gradient(145deg, #ffffff, #f8f9fa);
+        transition: all 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+    /* استایل‌های لیبل */
+    .form-label {
+        font-weight: bold;
+        color: #333;
+    }
+    /* استایل‌های پیام خطا */
+    .invalid-feedback {
+        display: block;
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
+        color: #dc3545;
+    }
+</style>
+
+<!-- اضافه کردن فونت Awesome برای آیکون‌ها -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 {% endblock %}

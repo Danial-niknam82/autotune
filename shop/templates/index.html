@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-    <!-- Header-->
-    <header class="bg-dark py-5">
+    <!-- Header with Gradient and Animation -->
+    <header class="bg-gradient-pink py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">اتو مارکت</h1>
-                <p class="lead fw-normal text-white-50 mb-0">خرید امن و مطمئن با اتو مارکت</p>
+                <h1 class="display-4 fw-bolder animate__animated animate__fadeInDown">اتو مارکت</h1>
+                <p class="lead fw-normal text-white-50 mb-0 animate__animated animate__fadeInUp">خرید امن و مطمئن با اتو مارکت</p>
             </div>
         </div>
     </header>
@@ -15,75 +15,63 @@
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
             <!-- Products Section -->
-            <h2 class="text-center mb-4">محصولات</h2>
+            <h2 class="text-center mb-4 fw-bold" style="color: #ff6f61;">محصولات</h2>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 {% for item in products %}
-                    {% if item.is_sale %}
-                        <div class="col mb-5">
-                            <div class="card h-100">
-                                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">فروش ویژه</div>
-                                <!-- Product image -->
-                                <img class="card-img-top" src="{{ item.picture.url }}" alt="{{ item.name }}" />
-                                <!-- Product details -->
-                                <div class="card-body p-4">
-                                    <div class="text-center">
-                                        <h5 class="fw-bolder">{{ item.name }}</h5>
-                                        <strike>{{ item.price }}</strike> تومان<br>
-                                        {{ item.sale_price }} تومان
-                                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100 shadow-lg border-0 rounded-3 animate__animated animate__fadeIn">
+                            {% if item.is_sale %}
+                                <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">فروش ویژه</div>
+                            {% endif %}
+                            <!-- Product image -->
+                            <img class="card-img-top rounded-top-3" src="{{ item.picture.url }}" alt="{{ item.name }}" />
+                            <!-- Product details -->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">{{ item.name }}</h5>
+                                    {% if item.is_sale %}
+                                        <strike class="text-muted">{{ item.price }} تومان</strike><br>
+                                        <span class="text-success fw-bold">{{ item.sale_price }} تومان</span>
+                                    {% else %}
+                                        <span class="text-dark fw-bold">{{ item.price }} تومان</span>
+                                    {% endif %}
                                 </div>
-                                <!-- Product actions -->
-                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center">
-                                        <a class="btn btn-outline-dark mt-auto" href="{% url 'product' item.id %}">اطلاعات بیشتر</a>
-                                    </div>
+                            </div>
+                            <!-- Product actions -->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <a class="btn btn-pink btn-gradient-pink btn-lg fw-bold" href="{% url 'product' item.id %}">
+                                        <i class="fas fa-info-circle me-2"></i>اطلاعات بیشتر
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                    {% else %}
-                        <div class="col mb-5">
-                            <div class="card h-100">
-                                <!-- Product image -->
-                                <img class="card-img-top" src="{{ item.picture.url }}" alt="{{ item.name }}" />
-                                <!-- Product details -->
-                                <div class="card-body p-4">
-                                    <div class="text-center">
-                                        <h5 class="fw-bolder">{{ item.name }}</h5>
-                                        {{ item.price }} تومان
-                                    </div>
-                                </div>
-                                <!-- Product actions -->
-                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center">
-                                        <a class="btn btn-outline-dark mt-auto" href="{% url 'product' item.id %}">اطلاعات بیشتر</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
+                    </div>
                 {% endfor %}
             </div>
 
             <!-- Advertisements Section -->
-            <h2 class="text-center mb-4">آگهی‌ها</h2>
+            <h2 class="text-center mb-4 fw-bold" style="color: #ff6f61;">آگهی‌ها</h2>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 {% for advertisement in advertisements %}
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100 shadow-lg border-0 rounded-3 animate__animated animate__fadeIn">
                             <!-- Advertisement image -->
-                            <img class="card-img-top" src="{{ advertisement.image.url }}" alt="{{ advertisement.title }}" />
+                            <img class="card-img-top rounded-top-3" src="{{ advertisement.image.url }}" alt="{{ advertisement.title }}" />
                             <!-- Advertisement details -->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <h5 class="fw-bolder">{{ advertisement.title }}</h5>
-                                    <p class="card-text">{{ advertisement.description }}</p>
+                                    <p class="card-text text-muted">{{ advertisement.description }}</p>
                                     <p class="card-text"><small class="text-muted">شماره تماس: {{ advertisement.phone }}</small></p>
                                 </div>
                             </div>
                             <!-- Advertisement actions -->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
-                                    <a class="btn btn-outline-dark mt-auto" href="{% url 'advertisement_detail' advertisement.id %}">اطلاعات بیشتر</a>
+                                    <a class="btn btn-pink btn-gradient-pink btn-lg fw-bold" href="{% url 'advertisement_detail' advertisement.id %}">
+                                        <i class="fas fa-info-circle me-2"></i>اطلاعات بیشتر
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -92,4 +80,77 @@
             </div>
         </div>
     </section>
+
+    <!-- Custom Styles -->
+    <style>
+        /* Gradient for Header (Pink) */
+        .bg-gradient-pink {
+            background: linear-gradient(135deg, #ff6f61, #ff9a9e);
+            animation: gradientAnimation 10s ease infinite;
+        }
+
+        /* Gradient Animation */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Card Styles */
+        .card {
+            border: none;
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Gradient for Buttons (Pink) */
+        .btn-gradient-pink {
+            background: linear-gradient(45deg, #ff6f61, #ff9a9e);
+            border: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-gradient-pink:hover {
+            background: linear-gradient(45deg, #ff9a9e, #ff6f61);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 111, 97, 0.3);
+        }
+
+        /* Animation for Cards */
+        .animate__animated {
+            animation-duration: 1s;
+        }
+
+        /* Rounded Corners for Images */
+        .rounded-top-3 {
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+
+        /* Custom Pink Color for Headings */
+        .text-pink {
+            color: #ff6f61;
+        }
+
+        /* Hover Effect for Cards */
+        .card-img-top {
+            transition: transform 0.3s ease;
+        }
+        .card:hover .card-img-top {
+            transform: scale(1.05);
+        }
+
+        /* Smooth Scroll Behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
+    <!-- Add Font Awesome and Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 {% endblock %}

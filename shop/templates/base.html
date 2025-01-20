@@ -1,36 +1,100 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Auto Market</title>
+        <meta name="description" content="اتو مارکت - خرید و فروش امن و مطمئن خودرو" />
+        <meta name="author" content="اتو مارکت" />
+        <title>اتو مارکت</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+        <!-- Animate.css -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <!-- Custom Styles -->
+        <style>
+            /* گرادیان برای بدنه */
+            body {
+                background: linear-gradient(145deg, #f8f9fa, #ffffff);
+                font-family: 'Vazir', system-ui, -apple-system, sans-serif;
+                color: #333;
+                line-height: 1.6;
+            }
+
+            /* گرادیان برای فوتر */
+            .bg-gradient-footer {
+                background: linear-gradient(135deg, #2c3e50, #34495e);
+                animation: gradientAnimation 10s ease infinite;
+            }
+
+            /* انیمیشن گرادیان */
+            @keyframes gradientAnimation {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+
+            /* سایه برای فوتر */
+            .footer-shadow {
+                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            /* استایل‌های سفارشی برای آلرت */
+            .alert-custom {
+                border-radius: 0.5rem;
+                border: none;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            /* انیمیشن برای آلرت */
+            .alert-custom.animate__animated {
+                animation-duration: 0.5s;
+            }
+
+            /* اسکرول نرم */
+            html {
+                scroll-behavior: smooth;
+            }
+        </style>
     </head>
-    <body dir='rtl'>
+    <body>
+        <!-- نوبار -->
         {% include "navbar.html" %}
+
+        <!-- پیام‌های آلرت -->
         {% if messages %}
-            {% for messages in messages %}
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                {{ messages }}
+            {% for message in messages %}
+            <div class="alert alert-custom alert-warning alert-dismissible fade show animate__animated animate__fadeInDown" role="alert">
+                {{ message }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             {% endfor %}
         {% endif %}
-        {% block content %}
 
+        <!-- محتوای اصلی -->
+        {% block content %}
         {% endblock %}
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+
+        <!-- فوتر -->
+        <footer class="py-5 bg-gradient-footer footer-shadow">
+            <div class="container">
+                <p class="m-0 text-center text-white">
+                    &copy; 2023 اتو مارکت. تمامی حقوق محفوظ است.
+                </p>
+                <div class="text-center mt-3">
+                    <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
         </footer>
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

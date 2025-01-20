@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>ثبت امتیاز برای {{ to_user.username }}</h2>
+    <p>شما در حال ثبت امتیاز برای معامله‌ی «{{ transaction.product.name }}» هستید.</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">ثبت امتیاز</button>
+    </form>
+</div>
+{% endblock %}

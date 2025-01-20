@@ -1,30 +1,138 @@
 {% extends "base.html" %}
 {% block content %}
-<header class="bg-dark py-5">
+
+<!-- هدر با گرادیان و انیمیشن -->
+<header class="bg-gradient-pink py-5">
   <div class="container px-4 px-lg-5 my-5">
       <div class="text-center text-white">
-          <h1 class="display-4 fw-bolder">ثبت نام کنید</h1>
-          <p class="lead fw-normal text-white-50 mb-0"></p>
+          <h1 class="display-4 fw-bolder animate__animated animate__fadeInDown">ثبت نام کنید</h1>
+          <p class="lead fw-normal text-white-50 mb-0 animate__animated animate__fadeInUp">به خانواده اتو مارکت بپیوندید</p>
       </div>
   </div>
 </header>
 
 <br><br>
+
+<!-- بخش فرم ثبت نام -->
 <div class="container">
-  <div class='row'>
-    <center>
-      <div class='col-10'>
-        <form method="POST" action={% url 'signup' %}> 
-          {% csrf_token %}
-            {{ form.as_p }}
-            <br>
-            <br>
-          <button type="submit" class="btn btn-secondary">ثبت نام</button>
-        </form>
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card shadow-lg border-0 rounded-3 animate__animated animate__fadeIn">
+        <div class="card-body p-5">
+          <form method="POST" action="{% url 'signup' %}">
+            {% csrf_token %}
+            <!-- فیلدهای فرم -->
+            {% for field in form %}
+              <div class="form-group mb-4">
+                <label for="{{ field.id_for_label }}" class="form-label fw-bold">{{ field.label }}</label>
+                <div class="input-group">
+                  <span class="input-group-text" style="background-color: #ff6f61; color: white;">
+                    {% if field.name == "username" %}
+                      <i class="fas fa-user"></i>
+                    {% elif field.name == "email" %}
+                      <i class="fas fa-envelope"></i>
+                    {% elif field.name == "password1" or field.name == "password2" %}
+                      <i class="fas fa-lock"></i>
+                    {% endif %}
+                  </span>
+                  {{ field }}
+                </div>
+                {% if field.errors %}
+                  <div class="invalid-feedback d-block">
+                    {{ field.errors }}
+                  </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+            <!-- دکمه ثبت نام -->
+            <div class="d-grid">
+              <button type="submit" class="btn btn-pink-gradient btn-lg fw-bold">
+                <i class="fas fa-user-plus me-2"></i>ثبت نام
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </center>
+    </div>
   </div>
-</div> 
+</div>
+
 <br><br>
 
-{% endblock %} 
+<!-- استایل‌های سفارشی -->
+<style>
+  /* گرادیان برای هدر (صورتی) */
+  .bg-gradient-pink {
+    background: linear-gradient(135deg, #ff6f61, #ff9a9e);
+    animation: gradientAnimation 10s ease infinite;
+  }
+
+  /* انیمیشن گرادیان */
+  @keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* سایه و انیمیشن برای کارت */
+  .card {
+    border: none;
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    transition: all 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  /* گرادیان برای دکمه (صورتی) */
+  .btn-pink-gradient {
+    background: linear-gradient(45deg, #ff6f61, #ff9a9e);
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  .btn-pink-gradient:hover {
+    background: linear-gradient(45deg, #ff9a9e, #ff6f61);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 111, 97, 0.3);
+  }
+
+  /* انیمیشن‌های متن */
+  .animate__animated {
+    animation-duration: 1s;
+  }
+
+  /* استایل‌های فیلدهای فرم */
+  .form-control {
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    border: 1px solid #ced4da;
+    transition: all 0.3s ease;
+  }
+  .form-control:focus {
+    border-color: #ff6f61;
+    box-shadow: 0 0 0 0.2rem rgba(255, 111, 97, 0.25);
+    transform: scale(1.02);
+  }
+
+  /* استایل‌های لیبل */
+  .form-label {
+    font-weight: bold;
+    color: #333;
+  }
+
+  /* استایل‌های پیام خطا */
+  .invalid-feedback {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: #dc3545;
+  }
+</style>
+
+<!-- اضافه کردن فونت Awesome و Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+{% endblock %}

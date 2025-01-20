@@ -1,28 +1,98 @@
 {% extends "base.html" %}
 {% block content %}
-<header class="py-5" >
+
+<!-- هدر با گرادیان و انیمیشن -->
+<header class="bg-gradient-pink py-5">
   <div class="container px-4 px-lg-5 my-5">
       <div class="text-center text-white">
-        <h1 class="display-4 fw-bolder" style="color:rgb(0, 0, 0);">درباره ما</h1>
-          <p class="lead fw-normal text-white-50 mb-0"  style="color:rgb(0, 0, 0);">مارا بهتر بشناسید.</p>
+        <h1 class="display-4 fw-bolder animate__animated animate__fadeInDown">درباره ما</h1>
+          <p class="lead fw-normal text-white-50 mb-0 animate__animated animate__fadeInUp">مارا بهتر بشناسید.</p>
       </div>
   </div>
 </header>
 
 <br><br>
-<div class="container">
-  <div class='row'>
-    <center>
-      <div class='col-10'>
-        <p align='justify'>
-     
-          اتو مارکت با هدف ایجاد فضایی امن و مطمئن برای خرید و فروش خودرو فعالیت خود را آغاز کرده است. ما تلاش می‌کنیم تا با ارائه خدمات حرفه‌ای و پشتیبانی مناسب، تجربه‌ای لذت‌بخش و سریع را برای کاربران خود فراهم کنیم.
 
-        </p>
+<!-- بخش محتوا -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div class="card shadow-lg border-0 rounded-3 animate__animated animate__fadeIn">
+        <div class="card-body p-5">
+          <p class="fs-5 text-justify text-muted">
+            <strong>اتو مارکت</strong> با هدف ایجاد فضایی امن، مطمئن و مدرن برای خرید و فروش خودرو فعالیت خود را آغاز کرده است. ما بر این باوریم که هر فردی سزاوار تجربه‌ای لذت‌بخش و بدون دغدغه در خرید یا فروش خودروی خود است. به همین دلیل، تیمی متخصص و با تجربه گرد هم آوردیم تا بهترین خدمات را به شما ارائه دهیم.
+          </p>
+          <p class="fs-5 text-justify text-muted">
+            در اتو مارکت، شما می‌توانید با خیالی آسوده به جستجوی خودروی مورد نظر خود بپردازید. ما با ارائه اطلاعات کامل، تصاویر با کیفیت و پشتیبانی ۲۴ ساعته، تلاش می‌کنیم تا فرآیند خرید و فروش خودرو را برای شما ساده و سریع کنیم.
+          </p>
+          <p class="fs-5 text-justify text-muted">
+            ما به کیفیت و رضایت شما اهمیت می‌دهیم و همواره در تلاش هستیم تا با به‌روزرسانی‌های مداوم و بهبود خدمات، تجربه‌ای بی‌نظیر را برای شما رقم بزنیم. به خانواده بزرگ اتو مارکت بپیوندید و از خدمات ما لذت ببرید.
+          </p>
+          <div class="text-center mt-4">
+            <a href="{% url 'home' %}" class="btn btn-pink-gradient btn-lg fw-bold">
+              <i class="fas fa-home me-2"></i>بازگشت به خانه
+            </a>
+          </div>
+        </div>
       </div>
-    </center>
+    </div>
   </div>
-</div> 
+</div>
+
 <br><br>
+
+<!-- استایل‌های سفارشی -->
+<style>
+  /* گرادیان برای هدر (صورتی) */
+  .bg-gradient-pink {
+    background: linear-gradient(135deg, #ff6f61, #ff9a9e);
+    animation: gradientAnimation 10s ease infinite;
+  }
+
+  /* انیمیشن گرادیان */
+  @keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* سایه و انیمیشن برای کارت */
+  .card {
+    border: none;
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    transition: all 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  /* گرادیان برای دکمه (صورتی) */
+  .btn-pink-gradient {
+    background: linear-gradient(45deg, #ff6f61, #ff9a9e);
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  .btn-pink-gradient:hover {
+    background: linear-gradient(45deg, #ff9a9e, #ff6f61);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 111, 97, 0.3);
+  }
+
+  /* انیمیشن‌های متن */
+  .animate__animated {
+    animation-duration: 1s;
+  }
+
+  /* استایل‌های متن */
+  .text-justify {
+    text-align: justify;
+  }
+</style>
+
+<!-- اضافه کردن فونت Awesome و Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
 {% endblock %}

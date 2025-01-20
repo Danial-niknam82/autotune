@@ -1,9 +1,11 @@
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-gradient-pink fixed-top shadow-lg">
     <div class="container px-4 px-lg-5">
         <!-- لوگو و نام سایت -->
-        <a class="navbar-brand" href="{% url 'home' %}">اتو مارکت</a>
-        
+        <a class="navbar-brand fw-bold animate__animated animate__fadeInLeft" href="{% url 'home' %}">
+            <i class="fas fa-car me-2"></i>اتو مارکت
+        </a>
+
         <!-- دکمه برای نمایش منو در دستگاه‌های کوچک -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -14,32 +16,44 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <!-- لینک خانه -->
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">خانه</a>
+                    <a class="nav-link active animate__animated animate__fadeInDown" aria-current="page" href="{% url 'home' %}">
+                        <i class="fas fa-home me-1"></i>خانه
+                    </a>
                 </li>
 
                 <!-- لینک درباره ما -->
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'about' %}">درباره ما</a>
+                    <a class="nav-link animate__animated animate__fadeInDown" href="{% url 'about' %}">
+                        <i class="fas fa-info-circle me-1"></i>درباره ما
+                    </a>
                 </li>
 
                 <!-- لینک‌های کاربری -->
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">خارج شدن</a>
+                        <a class="nav-link animate__animated animate__fadeInDown" href="{% url 'logout' %}">
+                            <i class="fas fa-sign-out-alt me-1"></i>خروج
+                        </a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">وارد شدن</a>
+                        <a class="nav-link animate__animated animate__fadeInDown" href="{% url 'login' %}">
+                            <i class="fas fa-sign-in-alt me-1"></i>ورود
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'signup' %}">ثبت نام</a>
+                        <a class="nav-link animate__animated animate__fadeInDown" href="{% url 'signup' %}">
+                            <i class="fas fa-user-plus me-1"></i>ثبت نام
+                        </a>
                     </li>
                 {% endif %}
 
                 <!-- منوی کشویی ماشین‌ها -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">ماشین‌ها</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="nav-link dropdown-toggle animate__animated animate__fadeInDown" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-car-side me-1"></i>ماشین‌ها
+                    </a>
+                    <ul class="dropdown-menu shadow-lg" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{% url 'home' %}">تمام ماشین‌ها</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item" href="{% url 'category' 'خارجی' %}">خارجی‌ها</a></li>
@@ -50,11 +64,67 @@
 
             <!-- دکمه ثبت آگهی -->
             <form class="d-flex" action="{% url 'add_advertisement' %}" method="get">
-                <button class="btn btn-outline-dark" type="submit">
-                    <i class="bi-plus-circle me-1"></i>
-                    ثبت آگهی
+                <button class="btn btn-light btn-gradient-pink fw-bold animate__animated animate__fadeInRight" type="submit">
+                    <i class="fas fa-plus-circle me-2"></i>ثبت آگهی
                 </button>
             </form>
         </div>
     </div>
 </nav>
+
+<!-- Custom Styles -->
+<style>
+    /* Gradient for Navbar (Pink) */
+    .bg-gradient-pink {
+        background: linear-gradient(135deg, #ff6f61, #ff9a9e);
+        animation: gradientAnimation 10s ease infinite;
+    }
+
+    /* Gradient Animation */
+    @keyframes gradientAnimation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Navbar Shadow */
+    .shadow-lg {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Gradient for Buttons (Pink) */
+    .btn-gradient-pink {
+        background: linear-gradient(45deg, #ff6f61, #ff9a9e);
+        border: none;
+        color: white;
+        transition: all 0.3s ease;
+    }
+    .btn-gradient-pink:hover {
+        background: linear-gradient(45deg, #ff9a9e, #ff6f61);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(255, 111, 97, 0.3);
+    }
+
+    /* Animation for Navbar Items */
+    .animate__animated {
+        animation-duration: 1s;
+    }
+
+    /* Dropdown Menu Styles */
+    .dropdown-menu {
+        border: none;
+        background: linear-gradient(145deg, #ffffff, #f8f9fa);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+    .dropdown-item {
+        transition: all 0.3s ease;
+    }
+    .dropdown-item:hover {
+        background: linear-gradient(45deg, #ff6f61, #ff9a9e);
+        color: white !important;
+    }
+</style>
+
+<!-- Add Font Awesome and Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
